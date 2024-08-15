@@ -15,13 +15,7 @@ module.exports = new Command("server vinaty", async ({ t, interaction }) => {
 
   if (!server) return;
 
-  const url = server.vanityURLCode({
-    size: 4096,
-    extension:
-      server.vanityURLCode && server.vanityURLCode.includes("a_")
-        ? "gif"
-        : "png",
-  });
+  const url = server.vanityURLCode;
 
   if (url === null) {
     interaction.editReply(`${emojis.no} **│** ${t["!server_vinaty"]}`);
