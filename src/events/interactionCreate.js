@@ -9,7 +9,7 @@ module.exports = new Event(
    * @param {import("discord.js").Interaction<import("discord.js").CacheType>} interaction
    */
   async (app, interaction) => {
-    if (interaction.isChatInputCommand()) {
+    if (interaction.isCommand()) {
       let name = interaction.commandName;
       const subcommand = interaction.options.getSubcommand(false);
 
