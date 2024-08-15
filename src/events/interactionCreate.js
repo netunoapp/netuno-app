@@ -21,8 +21,11 @@ module.exports = new Event(
         const ephemeral =
           interaction.options.getBoolean("ephemeral", false) ?? false;
         await interaction.deferReply({ ephemeral });
+        const t = app.locales.get(
+          interaction.locale === "pt-BR" ? "pt-BR" : "en-US"
+        );
 
-        await command.run({ app, interaction });
+        await command.run({ t, app, interaction });
       }
     }
   }

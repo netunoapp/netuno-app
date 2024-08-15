@@ -5,7 +5,7 @@ module.exports = class Command {
   /**
    *
    * @param {String} name
-   * @param {(context: { app: App, interaction: ChatInputCommandInteraction<import("discord.js").CacheType> }) => Promise<void>} run
+   * @param {(context: { t: any, app: App, interaction: ChatInputCommandInteraction<import("discord.js").CacheType> }) => Promise<void>} run
    */
   constructor(name, run) {
     this.name = name;

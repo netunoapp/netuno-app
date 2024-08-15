@@ -36,4 +36,16 @@ module.exports = class Handler {
       this.app.commands.set(command.name, command);
     }
   }
+
+  /**
+   *
+   * @param {string | string[]} pattern
+   */
+  async loadLocales(pattern) {
+    for (const dir of globSync(pattern)) {
+      const locale = require(resolve(dir));
+
+      this.app.locales.set(locale.locale, locale);
+    }
+  }
 };

@@ -8,5 +8,6 @@ module.exports = class App extends Client {
   constructor(options) {
     super(options);
     this.commands = new Collection();
+    this.locales = new Collection();
   }
 };
