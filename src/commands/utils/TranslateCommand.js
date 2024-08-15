@@ -1,4 +1,5 @@
 const Command = require("../../base/Command");
+const { translate } = require("@vitalets/google-translate-api");
 
 module.exports = new Command("translate", async ({ interaction }) => {
   if (!interaction.isMessageContextMenuCommand()) return;
