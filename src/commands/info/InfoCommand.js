@@ -7,6 +7,7 @@ const {
 } = require("discord.js");
 const Command = require("../../base/Command");
 const emojis = require("../../../data/emojis.json");
+const getUser = require("../../helpers/getUser");
 
 module.exports = new Command("user info", async ({ t, interaction }) => {
   if (!interaction.isChatInputCommand()) return;
@@ -16,9 +17,10 @@ module.exports = new Command("user info", async ({ t, interaction }) => {
     size: 4096,
     extension: user.avatar && user.avatar.includes("a_") ? "gif" : "png",
   });
+  const user_ = await getUser(user.id);
   const banner = user.banner
-    ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${
-        user.banner.includes("a_") ? "gif" : "png"
+    ? `https://cdn.discordapp.com/banners/${user_.id}/${user_.banner}.${
+        user_.banner.includes("a_") ? "gif" : "png"
       }?size=4096`
     : null;
 
