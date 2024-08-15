@@ -1,4 +1,4 @@
-const Command = require("../base/Command");
+const Command = require("../../base/Command");
 
 module.exports = new Command("ping", async ({ app, interaction }) => {
     interaction.editReply(`> :ping_pong: **Pong!**\n- WS: \`${app.ws.ping}ms\``)

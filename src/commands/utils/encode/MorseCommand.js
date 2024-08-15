@@ -1,5 +1,5 @@
-const Command = require("../../base/Command");
-const morse = require("../../../data/morse.json");
+const Command = require("../../../base/Command");
+const morse = require("../../../../data/morse.json");
 
 module.exports = new Command("encode morse", async ({ interaction }) => {
   const text = interaction.options.getString("text", true);
