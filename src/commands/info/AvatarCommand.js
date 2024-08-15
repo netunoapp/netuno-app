@@ -9,6 +9,8 @@ const Command = require("../../base/Command");
 const emojis = require("../../../data/emojis.json");
 
 module.exports = new Command("user avatar", async ({ t, interaction }) => {
+  if (!interaction.isChatInputCommand()) return;
+  
   const user = interaction.options.getUser("user", false) ?? interaction.user;
   const url = user.displayAvatarURL({
     size: 4096,

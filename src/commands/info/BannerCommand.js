@@ -10,6 +10,8 @@ const emojis = require("../../../data/emojis.json");
 const getUser = require("../../helpers/getUser");
 
 module.exports = new Command("user banner", async ({ t, interaction }) => {
+  if (!interaction.isChatInputCommand()) return;
+  
   const userOption = interaction.options.getUser("user", false) ?? interaction.user;
   const user = await getUser(userOption.id);
   const url = user.banner
