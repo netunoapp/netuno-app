@@ -24,4 +24,16 @@ module.exports = class Handler {
       });
     }
   }
+
+  /**
+   *
+   * @param {string | string[]} pattern
+   */
+  async loadCommands(pattern) {
+    for (const dir of globSync(pattern)) {
+      const command = require(resolve(dir));
+
+      this.app.commands.set(command.name, command);
+    }
+  }
 };
