@@ -1,4 +1,4 @@
-const Command = require("../../../base/Commandand");
+const Command = require("../../../base/Command");
 const Morse = require("../../../../data/morse.json");
 
 module.exports = new Command("decode morse", async ({ interaction }) => {
