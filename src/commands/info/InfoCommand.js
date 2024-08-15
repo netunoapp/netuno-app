@@ -18,7 +18,7 @@ module.exports = new Command("user info", async ({ t, interaction }) => {
     extension: user.avatar && user.avatar.includes("a_") ? "gif" : "png",
   });
   const user_ = await getUser(user.id);
-  const banner = user.banner
+  const banner = user_.banner
     ? `https://cdn.discordapp.com/banners/${user_.id}/${user_.banner}.${
         user_.banner.includes("a_") ? "gif" : "png"
       }?size=4096`
