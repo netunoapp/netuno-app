@@ -20,7 +20,7 @@ module.exports = class Handler {
       const event = require(resolve(dir));
 
       this.app[event.type](event.name, async (...args) => {
-        await event.run(...args);
+        await event.run(this.app, ...args);
       });
     }
   }
