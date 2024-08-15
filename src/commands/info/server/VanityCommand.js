@@ -18,7 +18,7 @@ module.exports = new Command("server vinaty", async ({ t, interaction }) => {
   const url = server.vanityURLCode;
 
   if (url === null) {
-    interaction.editReply(`${emojis.no} **│** ${t["!server_vinaty"]}`);
+    interaction.editReply(`${emojis.no} **│** ${t["!server_vanity"]}`);
   } else {
     const downloadEmoji = await parseEmoji(emojis.download);
 
