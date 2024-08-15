@@ -5,9 +5,9 @@ const {
   ButtonStyle,
   parseEmoji,
 } = require("discord.js");
-const Command = require("../../base/Command");
-const emojis = require("../../../data/emojis.json");
-const getUser = require("../../helpers/getUser");
+const Command = require("../../../base/Command");
+const emojis = require("../../../../data/emojis.json");
+const getUser = require("../../../helpers/getUser");
 
 module.exports = new Command("user banner", async ({ t, interaction }) => {
   if (!interaction.isChatInputCommand()) return;
