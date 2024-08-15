@@ -41,9 +41,9 @@ module.exports = new Command("server info", async ({ t, app, interaction }) => {
           .replace("%m", `${interaction.guild.memberCount}`)
           .replace("%b", `${interaction.guild.premiumSubscriptionCount}`)
           .replace("%t", `${interaction.guild.premiumTier}`)
-          .replace("%c", `${interaction.guild.channels.size}`)
-          .replace("%r", `${interaction.guild.roles.size}`)
-          .replace("%e", `${interaction.guild.emojis.size}`),
+          .replace("%c", `${interaction.guild.channels.cache.size}`)
+          .replace("%r", `${interaction.guild.roles.cache.size}`)
+          .replace("%e", `${interaction.guild.emojis.cache.size}`),
       },
       {
         name: `${emojis.calendar} ${t.createdat}`,
