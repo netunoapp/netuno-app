@@ -16,8 +16,6 @@ module.exports = new Command("user banner", async ({ t, interaction }) => {
     ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${user.banner.includes("a_") ? "gif" : "png"}?size=4096`
     : null;
 
-  console.log(user.banner, url);
-
   if (url === null) {
     interaction.editReply(`${emojis.no} **│** ${t["!user_banner"]}`);
   } else {
