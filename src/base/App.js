@@ -12,7 +12,14 @@ module.exports = class App extends Client {
    */
   constructor(options) {
     super(options);
-    this.init();
+    this.init(
+      new Collection(),
+      new Collection(),
+      new Collection(),
+      new Collection(),
+      new Collection(),
+      new Collection()
+    );
   }
 
   /**
@@ -22,7 +29,7 @@ module.exports = class App extends Client {
    * @param {Collection<string, Command>} commands
    * @param {Collection<string, Component>} components
    * @param {Collection<string, Autocomplete>} autocompletes
-   * @param {Collection<string, any>} globalCommands
+   * @param {Collection<string, import("oceanic.js").CreateApplicationCommandOptions>} globalCommands
    */
   init(modals, locales, commands, components, autocompletes, globalCommands) {
     this.modals = modals;

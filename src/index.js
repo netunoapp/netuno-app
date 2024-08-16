@@ -1,4 +1,3 @@
-require("colors");
 require("dotenv/config");
 require("./database");
 
