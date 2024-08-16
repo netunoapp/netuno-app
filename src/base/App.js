@@ -1,17 +1,35 @@
-const { Client } = require("oceanic.js");
+const { Client, Collection } = require("oceanic.js");
+const Modal = require("./Modal");
+const Command = require("./Command");
+const Component = require("./Component");
+const Autocomplete = require("./Autocomplete");
+const enUS = require("../../locales/en-US.json");
 
 module.exports = class App extends Client {
-    /**
-     * 
-     * @param {import("oceanic.js").ClientOptions} options 
-     */
-    constructor(options) {
-        super(options);
-        this.modals = new oceanic_js_1.Collection();
-        this.locales = new oceanic_js_1.Collection();
-        this.commands = new oceanic_js_1.Collection();
-        this.components = new oceanic_js_1.Collection();
-        this.autocompletes = new oceanic_js_1.Collection();
-        this.globalCommands = new oceanic_js_1.Collection();
-    }
-}
+  /**
+   *
+   * @param {import("oceanic.js").ClientOptions} options
+   */
+  constructor(options) {
+    super(options);
+    this.init();
+  }
+
+  /**
+   *
+   * @param {Collection<string, Modal>} modals
+   * @param {Collection<string, enUS>} locales
+   * @param {Collection<string, Command>} commands
+   * @param {Collection<string, Component>} components
+   * @param {Collection<string, Autocomplete>} autocompletes
+   * @param {Collection<string, any>} globalCommands
+   */
+  init(modals, locales, commands, components, autocompletes, globalCommands) {
+    this.modals = modals;
+    this.locales = locales;
+    this.commands = commands;
+    this.components = components;
+    this.autocompletes = autocompletes;
+    this.globalCommands = globalCommands;
+  }
+};
