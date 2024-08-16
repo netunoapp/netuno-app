@@ -1,51 +1,101 @@
-const { resolve } = require("path");
-const { globSync } = require("glob");
-const App = require("./App");
-
-module.exports = class Handler {
-  /**
-   *
-   * @param {App} app
-   */
-  constructor(app) {
-    this.app = app;
-  }
-
-  /**
-   *
-   * @param {string | string[]} pattern
-   */
-  async loadEvents(pattern) {
-    for (const dir of globSync(pattern)) {
-      const event = require(resolve(dir));
-
-      this.app[event.type](event.name, async (...args) => {
-        await event.run(this.app, ...args);
-      });
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
     }
-  }
-
-  /**
-   *
-   * @param {string | string[]} pattern
-   */
-  async loadCommands(pattern) {
-    for (const dir of globSync(pattern)) {
-      const command = require(resolve(dir));
-
-      this.app.commands.set(command.name, command);
-    }
-  }
-
-  /**
-   *
-   * @param {string | string[]} pattern
-   */
-  async loadLocales(pattern) {
-    for (const dir of globSync(pattern)) {
-      const locale = require(resolve(dir));
-
-      this.app.locales.set(locale.locale, locale);
-    }
-  }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const glob_1 = require("glob");
+const path_1 = require("path");
+class Handler {
+    constructor(app) {
+        this.app = app;
+        this.app = app;
+    }
+    loadEvents(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const event = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app[event.type](event.name, (...args) => __awaiter(this, void 0, void 0, function* () {
+                    yield event.run(this.app, ...args);
+                }));
+            }
+        });
+    }
+    loadAutocompletes(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const autocomplete = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app.autocompletes.set(autocomplete.name, autocomplete);
+            }
+        });
+    }
+    loadComponents(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const component = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app.components.set(component.name, component);
+            }
+        });
+    }
+    loadModals(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const modal = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app.modals.set(modal.name, modal);
+            }
+        });
+    }
+    loadCommands(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const command = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app.commands.set(command.name, command);
+            }
+        });
+    }
+    loadGlobalCommands(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const command = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app.globalCommands.set(command.name, command);
+            }
+        });
+    }
+    loadLocales(pattern) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const dir of (0, glob_1.globSync)(pattern)) {
+                const locale = (yield Promise.resolve(`${(0, path_1.resolve)(dir)}`).then(s => __importStar(require(s)))).default;
+                this.app.locales.set(locale.locale, locale);
+            }
+        });
+    }
+}
+exports.default = Handler;

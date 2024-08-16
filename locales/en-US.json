@@ -26,6 +26,7 @@
     "channel": "Channel",
     "resources": "Resources",
     "stats_val3": "Members Online: ``%o`` and Total: ``%f``",
+    "!member": "This user is not a member of the server.",
     "!member_avatar": "This member does not have an avatar.",
     "!member_banner": "This member does not have an banner.",
     "roles": "Roles (%r)",

@@ -1,15 +1,13 @@
-const App = require("./App");
-
-module.exports = class Event {
-  /**
-   *
-   * @param {keyof import("discord.js").ClientEvents} name
-   * @param {(app: App, ...args: any[]) => Promise<void>} run
-   * @param {"on" | "once"} type
-   */
-  constructor(name, run, type = "on") {
-    this.run = run;
-    this.name = name;
-    this.type = type;
-  }
-};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Event {
+    constructor(type, name, run) {
+        this.type = type;
+        this.name = name;
+        this.run = run;
+        this.run = run;
+        this.type = type;
+        this.name = name;
+    }
+}
+exports.default = Event;
