@@ -1,13 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Event {
-    constructor(type, name, run) {
-        this.type = type;
-        this.name = name;
-        this.run = run;
-        this.run = run;
-        this.type = type;
-        this.name = name;
-    }
-}
-exports.default = Event;
+const App = require("./App");
+
+module.exports = class Event {
+  /**
+   *
+   * @param {keyof import("oceanic.js").ClientEvents} name
+   * @param {(app: App, ...args: import("oceanic.js").ClientEvents[name]) => Promise<void>} run
+   * @param {"on" | "once"} type
+   */
+  constructor(name, run, type = "on") {
+    this.type = type;
+    this.run = run;
+    this.name = name;
+  }
+};

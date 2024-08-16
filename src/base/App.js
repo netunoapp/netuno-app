@@ -1,7 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const oceanic_js_1 = require("oceanic.js");
-class App extends oceanic_js_1.Client {
+const { Client } = require("oceanic.js");
+
+module.exports = class App extends Client {
+    /**
+     * 
+     * @param {import("oceanic.js").ClientOptions} options 
+     */
     constructor(options) {
         super(options);
         this.modals = new oceanic_js_1.Collection();
@@ -12,4 +15,3 @@ class App extends oceanic_js_1.Client {
         this.globalCommands = new oceanic_js_1.Collection();
     }
 }
-exports.default = App;

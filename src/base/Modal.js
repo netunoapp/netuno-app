@@ -1,11 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Modal {
-    constructor(name, run) {
-        this.name = name;
-        this.run = run;
-        this.run = run;
-        this.name = name;
-    }
-}
-exports.default = Modal;
+const App = require("./App");
+const { ModalSubmitInteraction } = require("oceanic.js");
+const enUS = require("../../locales/en-US.json");
+
+module.exports = class Modal {
+  /**
+   * 
+   * @param {String} name 
+   * @param {(context: { t: enUS, app: App, interaction: ModalSubmitInteraction }) => Promise<void>} run 
+   */
+  constructor(name, run) {
+    this.name = name;
+    this.run = run;
+  }
+};
