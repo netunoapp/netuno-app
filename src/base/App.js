@@ -22,6 +22,7 @@ module.exports = class App extends Client {
     );
   }
 
+  //Tipagem fabulosa
   /**
    *
    * @param {Collection<string, Modal>} modals
