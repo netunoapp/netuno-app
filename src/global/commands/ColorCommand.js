@@ -1,50 +1,51 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const oceanic_js_1 = require("oceanic.js");
-const Command_1 = __importDefault(require("../base/Command"));
-const EphemeralOption_1 = __importDefault(require("../options/EphemeralOption"));
-exports.default = (0, Command_1.default)({
-    type: oceanic_js_1.ApplicationCommandTypes.CHAT_INPUT,
-    name: "color",
-    nameLocalizations: {
-        "pt-BR": "cor",
-    },
-    description: "undefined",
-    integrationTypes: [
-        oceanic_js_1.ApplicationIntegrationTypes.GUILD_INSTALL,
-        oceanic_js_1.ApplicationIntegrationTypes.USER_INSTALL,
-    ],
-    contexts: [
-        oceanic_js_1.InteractionContextTypes.BOT_DM,
-        oceanic_js_1.InteractionContextTypes.GUILD,
-        oceanic_js_1.InteractionContextTypes.PRIVATE_CHANNEL,
-    ],
-    options: [
+const {
+  ApplicationCommandTypes,
+  InteractionContextTypes,
+  ApplicationIntegrationTypes,
+  ApplicationCommandOptionTypes,
+} = require("oceanic.js");
+const Command = require("../base/Command");
+const EphemeralOption = require("../options/EphemeralOption");
+
+exports.default = Command({
+  type: ApplicationCommandTypes.CHAT_INPUT,
+  name: "color",
+  nameLocalizations: {
+    "pt-BR": "cor",
+  },
+  description: "undefined",
+  integrationTypes: [
+    ApplicationIntegrationTypes.GUILD_INSTALL,
+    ApplicationIntegrationTypes.USER_INSTALL,
+  ],
+  contexts: [
+    InteractionContextTypes.BOT_DM,
+    InteractionContextTypes.GUILD,
+    InteractionContextTypes.PRIVATE_CHANNEL,
+  ],
+  options: [
+    {
+      type: ApplicationCommandOptionTypes.SUB_COMMAND,
+      name: "info",
+      description: "Information about a color.",
+      descriptionLocalizations: {
+        "pt-BR": "Informações sobre uma cor.",
+      },
+      options: [
         {
-            type: oceanic_js_1.ApplicationCommandOptionTypes.SUB_COMMAND,
-            name: "info",
-            description: "Information about a color.",
-            descriptionLocalizations: {
-                "pt-BR": "Informações sobre uma cor.",
-            },
-            options: [
-                {
-                    type: oceanic_js_1.ApplicationCommandOptionTypes.STRING,
-                    required: true,
-                    name: "color",
-                    nameLocalizations: {
-                        "pt-BR": "cor",
-                    },
-                    description: "Hex color.",
-                    descriptionLocalizations: {
-                        "pt-BR": "Cor hexadecimal.",
-                    },
-                },
-                (0, EphemeralOption_1.default)(false)
-            ],
+          type: ApplicationCommandOptionTypes.STRING,
+          required: true,
+          name: "color",
+          nameLocalizations: {
+            "pt-BR": "cor",
+          },
+          description: "Hex color.",
+          descriptionLocalizations: {
+            "pt-BR": "Cor hexadecimal.",
+          },
         },
-    ],
+        EphemeralOption(false),
+      ],
+    },
+  ],
 });
