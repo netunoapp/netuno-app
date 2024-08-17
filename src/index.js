@@ -1,6 +1,3 @@
-require("dotenv/config");
-require("./database");
-
 const App = require("./base/App");
 const Handler = require("./base/Handler");
 const app = new App({
