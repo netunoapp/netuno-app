@@ -9,7 +9,7 @@
   "dependencies": {
     "@vitalets/google-translate-api": "^9.2.0",
     "axios": "^1.7.4",
-    "canvas": "^2.11.2",
+    "canvas": "lastant",
     "dotenv": "^16.4.5",
     "glob": "^11.0.0",
     "mathjs": "^13.0.3",
