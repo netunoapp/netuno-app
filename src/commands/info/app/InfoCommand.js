@@ -156,17 +156,24 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
     }
   }
 
+  const row = [];
+
+  if (components && components[0]) {
+    row.push({
+      type: 1,
+      components,
+    });
+  }
+
+  if (components2 && components2[0]) {
+    row.push({
+      type: 1,
+      components: components2,
+    });
+  }
+
   interaction.createFollowup({
     embeds: [embed],
-    components: [
-      {
-        type: 1,
-        components: components,
-      },
-      {
-        type: 1,
-        components: components2,
-      },
-    ],
+    components: row,
   });
 });
