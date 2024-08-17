@@ -25,8 +25,8 @@ module.exports = class CanvasUtil {
     ctx.stroke();
   }
 
-  static round(url) {
-      const img = yield loadImage(url); // Carrega a imagem
+  static async round(url) {
+      const img = await loadImage(url); // Carrega a imagem
       const canvas = createCanvas(img.width, img.height);
       const ctx = canvas.getContext("2d");
       ctx.beginPath();

@@ -1,4 +1,4 @@
-const Command = __importDefault(require("../../../base/Command"));
+const Command = require("../../../base/Command");
 
 module.exports = new Command("random choice", async ({ interaction }) => {
   let options = interaction.data.options.getOptions();
