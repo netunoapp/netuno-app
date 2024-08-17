@@ -1,4 +1,4 @@
-const { ApplicationIntegrationTypes, InteractionContextTypes, ApplicationCommandOptionTypes } = require("oceanic.js");
+const { ApplicationIntegrationTypes, InteractionContextTypes, ApplicationCommandOptionTypes, ApplicationCommandTypes } = require("oceanic.js");
 const Command = require("../base/Command");
 const UserOption = require("../options/UserOption");
 const EphemeralOption = require("../options/EphemeralOption");

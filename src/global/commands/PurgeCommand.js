@@ -1,6 +1,7 @@
 const {
   ApplicationIntegrationTypes,
   ApplicationCommandOptionTypes,
+  ApplicationCommandTypes,
 } = require("oceanic.js");
 const Command = require("../base/Command");
 const AmountOption = require("../options/AmountOption");

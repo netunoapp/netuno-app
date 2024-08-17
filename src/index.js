@@ -19,4 +19,5 @@ app.connect().then(async () => {
     await handler.loadEvents("src/events/**/*.js");
     await handler.loadCommands("src/commands/**/*.js");
     await handler.loadAutocompletes("src/auto/**/*.js");
+    await handler.loadGlobalCommands("src/global/commands/**/*.js");
 });
