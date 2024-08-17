@@ -102,45 +102,57 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
   } else {
     if (app2.integration_types_config && app2.integration_types_config["0"]) {
       const res = app2.integration_types_config["0"];
-      components2.push({
-        type: 2,
-        style: 5,
-        label: t.add_me,
-        emoji: {
-          id: addServerEmoji.id,
-          name: addServerEmoji.name,
-        },
-        url: `https://discord.com/oauth2/authorize?client_id=${
-          app2.id
-        }&permissions=${
-          res.oauth2_install_params && res.oauth2_install_params.permissions
-            ? res.oauth2_install_params.permissions
-            : "0"
-        }&integration_type=0&scope=${res.oauth2_install_params.scopes.join(
-          "+"
-        )}`,
-      });
+
+      if (
+        res.oauth2_install_params &&
+        res.oauth2_install_params.permissions &&
+        res.oauth2_install_params.scopes &&
+        res.oauth2_install_params.scopes[0]
+      ) {
+        components2.push({
+          type: 2,
+          style: 5,
+          label: t.add_me,
+          emoji: {
+            id: addServerEmoji.id,
+            name: addServerEmoji.name,
+          },
+          url: `https://discord.com/oauth2/authorize?client_id=${
+            app2.id
+          }&permissions=${
+            res.oauth2_install_params.permissions
+          }&integration_type=0&scope=${res.oauth2_install_params.scopes.join(
+            "+"
+          )}`,
+        });
+      }
     }
+
     if (app2.integration_types_config && app2.integration_types_config["1"]) {
       const res = app2.integration_types_config["1"];
-      components2.push({
-        type: 2,
-        style: 5,
-        label: t.tryIt,
-        emoji: {
-          id: addAppEmoji.id,
-          name: addAppEmoji.name,
-        },
-        url: `https://discord.com/oauth2/authorize?client_id=${
-          app2.id
-        }&permissions=${
-          res.oauth2_install_params && res.oauth2_install_params.permissions
-            ? res.oauth2_install_params.permissions
-            : "0"
-        }&integration_type=1&scope=${res.oauth2_install_params.scopes.join(
-          "+"
-        )}`,
-      });
+      if (
+        res.oauth2_install_params &&
+        res.oauth2_install_params.permissions &&
+        res.oauth2_install_params.scopes &&
+        res.oauth2_install_params.scopes[0]
+      ) {
+        components2.push({
+          type: 2,
+          style: 5,
+          label: t.tryIt,
+          emoji: {
+            id: addAppEmoji.id,
+            name: addAppEmoji.name,
+          },
+          url: `https://discord.com/oauth2/authorize?client_id=${
+            app2.id
+          }&permissions=${
+            res.oauth2_install_params.permissions
+          }&integration_type=1&scope=${res.oauth2_install_params.scopes.join(
+            "+"
+          )}`,
+        });
+      }
     }
   }
 
