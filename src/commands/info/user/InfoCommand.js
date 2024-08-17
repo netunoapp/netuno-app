@@ -32,7 +32,7 @@ module.exports = new Command(
     const embed = {
       color: 5793266,
       title: `${user.globalName ? user.globalName : user.tag}`,
-      description: badges.filter((v, i, s) => s.indexOf(v) === i).join(""),
+      description: `> ${badges.filter((v, i, s) => s.indexOf(v) === i).join("")}`,
       fields: [
         {
           inline: true,
