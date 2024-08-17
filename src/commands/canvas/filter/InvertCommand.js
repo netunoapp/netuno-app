@@ -2,7 +2,7 @@ const Command = require("../../../base/Command");
 const CanvasUtil = require("../../../helpers/Canvas");
 const { createCanvas, loadImage } = require("canvas");
 
-exports.default = Command("filter invert", async ({ interaction, t }) => {
+exports.default = new Command("filter invert", async ({ interaction, t }) => {
   const image = interaction.data.options.getString("image-url", true);
 
   if (!image || !(await CanvasUtil.validImage(image))) {
