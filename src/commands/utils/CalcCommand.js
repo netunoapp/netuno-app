@@ -1,30 +1,18 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
+const { evaluate } = require("mathjs");
+const Command = require("../../base/Command");
+
+module.exports = new Command("calc", async ({ interaction }) => {
+  const expression = interaction.data.options.getString("expression", true);
+
+  try {
+    const res = evaluate(expression);
+
+    interaction.createFollowup({
+      content: `\`\`\`${res}\`\`\``,
     });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mathjs_1 = require("mathjs");
-const Command_1 = __importDefault(require("../../base/Command"));
-exports.default = new Command_1.default("calc", (_a) => __awaiter(void 0, [_a], void 0, function* ({ interaction }) {
-    const expression = interaction.data.options.getString("expression", true);
-    try {
-        const res = (0, mathjs_1.evaluate)(expression);
-        interaction.createFollowup({
-            content: `\`\`\`${res}\`\`\``,
-        });
-    }
-    catch (error) {
-        interaction.createFollowup({
-            content: `\`\`\`${error}\`\`\``,
-        });
-    }
-}));
+  } catch (error) {
+    interaction.createFollowup({
+      content: `\`\`\`${error}\`\`\``,
+    });
+  }
+});
