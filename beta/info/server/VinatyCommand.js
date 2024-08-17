@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Command_1 = __importDefault(require("../../../base/Command"));
-const emojis_json_1 = __importDefault(require("../../../../data/emojis.json"));
-const getEmoji_1 = __importDefault(require("../../../helpers/getEmoji"));
+const Command_1 = __importDefault(require("../../../src/base/Command"));
+const emojis_json_1 = __importDefault(require("../../../data/emojis.json"));
+const getEmoji_1 = __importDefault(require("../../../src/helpers/getEmoji"));
 exports.default = new Command_1.default("server vinaty", (_a) => __awaiter(void 0, [_a], void 0, function* ({ t, interaction }) {
     if (!interaction.guild) {
         interaction.createFollowup({ content: `${emojis_json_1.default.no} │ ${t["!server"]}` });

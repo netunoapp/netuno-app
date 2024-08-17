@@ -1,4 +1,4 @@
-const Command = require("../../../base/Command");
+const Command = require("../../../src/base/Command");
 const { createCanvas, loadImage, registerFont } = require("canvas");
 
 module.exports = new Command("meme laranjo", async ({ interaction }) => {
