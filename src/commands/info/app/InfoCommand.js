@@ -100,6 +100,28 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
       url: app2.custom_install_url,
     });
   } else {
+    if (app2.install_params) {
+      const res = app2.install_params;
+
+      if (res.scopes && res.scopes[0] && res.permissions) {
+        components2.push({
+          type: 2,
+          style: 5,
+          label: t.add_me,
+          emoji: {
+            id: addServerEmoji.id,
+            name: addServerEmoji.name,
+          },
+          url: `https://discord.com/oauth2/authorize?client_id=${
+            app2.id
+          }&permissions=${
+            res.permissions
+          }&integration_type=0&scope=${res.scopes.join(
+            "+"
+          )}`,
+        });
+      }
+    }
     if (app2.integration_types_config && app2.integration_types_config["0"]) {
       const res = app2.integration_types_config["0"];
 
@@ -130,6 +152,7 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
 
     if (app2.integration_types_config && app2.integration_types_config["1"]) {
       const res = app2.integration_types_config["1"];
+
       if (
         res.oauth2_install_params &&
         res.oauth2_install_params.permissions &&
@@ -172,8 +195,10 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
     });
   }
 
+  console.log(row);
+
   interaction.createFollowup({
     embeds: [embed],
-    components: row,
+    components: row && row[0] ? row : undefined,
   });
 });
