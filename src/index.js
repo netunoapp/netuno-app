@@ -15,6 +15,7 @@ const app = new App({
 
 app.connect().then(async () => {
     const handler = new Handler(app);
+    
     await handler.loadLocales("locales/**/*.json");
     await handler.loadEvents("src/events/**/*.js");
     await handler.loadCommands("src/commands/**/*.js");
