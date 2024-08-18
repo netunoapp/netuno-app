@@ -74,7 +74,7 @@ module.exports = Command({
         },
         {
             type: ApplicationCommandOptionTypes.SUB_COMMAND,
-            name: "vinaty",
+            name: "vanity",
             nameLocalizations: {
                 "pt-BR": "url-customizada",
             },

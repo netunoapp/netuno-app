@@ -2,11 +2,11 @@ const Command = require("../../../base/Command");
 const emojis = require("../../../../data/emojis.json");
 const getEmoji = require("../../../helpers/getEmoji");
 
-module.exports = new Command("server vinaty", async ({ t, interaction }) => {
+module.exports = new Command("server vanity", async ({ t, interaction }) => {
   if (!interaction.guild) {
     interaction.createFollowup({ content: `${emojis.no} │ ${t["!server"]}` });
   } else {
-    const url = await interaction.guild.getVanityURL();
+    const url = await interaction.guild.getVanityURL().catch(() => undefined);
 
     if (!url) {
       interaction.createFollowup({ content: `${emojis.no} │ ${t["!server_vanity"]}` });
