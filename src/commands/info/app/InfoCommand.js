@@ -209,8 +209,6 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
     });
   }
 
-  console.log(row);
-
   interaction.createFollowup({
     embeds: [embed],
     components: row && row[0] ? row : undefined,
