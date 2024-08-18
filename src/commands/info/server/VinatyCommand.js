@@ -1,6 +1,6 @@
-const Command = require("../../../src/base/Command");
-const emojis = require("../../../data/emojis.json");
-const getEmoji = require("../../../src/helpers/getEmoji");
+const Command = require("../../../base/Command");
+const emojis = require("../../../../data/emojis.json");
+const getEmoji = require("../../../helpers/getEmoji");
 
 module.exports = new Command("server vinaty", async ({ t, interaction }) => {
   if (!interaction.guild) {
