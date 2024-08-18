@@ -71,7 +71,7 @@ module.exports = Command({
       descriptionLocalizations: {
         "pt-BR": "Adicione borda transgênero à imagem.",
       },
-      options: [ImageOption(true), ImageOption(false)],
+      options: [ImageOption(true), EphemeralOption(false)],
     },
     {
       type: ApplicationCommandOptionTypes.SUB_COMMAND,
