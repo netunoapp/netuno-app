@@ -19,6 +19,8 @@ module.exports = class Handler {
     for (const dir of globSync(pattern)) {
       const event = require(resolve(dir));
 
+      delete require.cache[dir];
+
       this.app[event.type](event.name, (...args) =>
         event.run(this.app, ...args)
       );
@@ -33,6 +35,8 @@ module.exports = class Handler {
     for (const dir of globSync(pattern)) {
       const autocomplete = require(resolve(dir));
 
+      delete require.cache[dir];
+
       this.app.autocompletes.set(autocomplete.name, autocomplete);
     }
   }
@@ -44,6 +48,8 @@ module.exports = class Handler {
   async loadComponents(pattern) {
     for (const dir of globSync(pattern)) {
       const component = require(resolve(dir));
+
+      delete require.cache[dir];
 
       this.app.components.set(component.name, component);
     }
@@ -57,6 +63,8 @@ module.exports = class Handler {
     for (const dir of globSync(pattern)) {
       const modal = require(resolve(dir));
 
+      delete require.cache[dir];
+
       this.app.modals.set(modal.name, modal);
     }
   }
@@ -68,6 +76,8 @@ module.exports = class Handler {
   async loadCommands(pattern) {
     for (const dir of globSync(pattern)) {
       const command = require(resolve(dir));
+
+      delete require.cache[dir];
 
       this.app.commands.set(command.name, command);
     }
@@ -81,6 +91,8 @@ module.exports = class Handler {
     for (const dir of globSync(pattern)) {
       const command = require(resolve(dir));
 
+      delete require.cache[dir];
+
       this.app.globalCommands.set(command.name, command);
     }
   }
@@ -92,6 +104,8 @@ module.exports = class Handler {
   async loadLocales(pattern) {
     for (const dir of globSync(pattern)) {
       const locale = require(resolve(dir));
+
+      delete require.cache[dir];
 
       this.app.locales.set(locale.locale, locale);
     }
