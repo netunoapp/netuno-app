@@ -1,5 +1,5 @@
-const Command = require("../../base/Command");
-const UserModel = require("../../database/models/UserModel");
+const Command = require("../../src/base/Command");
+const UserModel = require("../../src/database/models/UserModel");
 
 module.exports = new Command("daily", async ({ author, interaction }) => {
   let daily = new Date().toLocaleDateString("en-US");
