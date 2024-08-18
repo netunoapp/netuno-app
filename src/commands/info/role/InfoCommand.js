@@ -51,26 +51,32 @@ module.exports = new Command("server role info", async ({ t, interaction }) => {
     ],
   };
 
-  if (role.icon) embed.thumbnail = { url: role.icon };
+  const components = [];
+
+  if (role.icon) {
+    embed.thumbnail = { url: role.icon };
+    components.push({
+      url: role.icon,
+      type: 2,
+      style: 5,
+      emoji: {
+        id: downloadEmoji.id,
+        name: downloadEmoji.name,
+      },
+      label: t.download,
+    });
+  }
 
   interaction.createFollowup({
     embeds: [embed],
-    components: [
-      {
-        type: 1,
-        components: [
-          {
-            url,
-            type: 2,
-            style: 5,
-            emoji: {
-              id: downloadEmoji.id,
-              name: downloadEmoji.name,
+    components:
+      components && components[0]
+        ? [
+            {
+              type: 1,
+              components,
             },
-            label: t.download,
-          },
-        ],
-      },
-    ],
+          ]
+        : undefined,
   });
 });
