@@ -12,7 +12,7 @@ module.exports = new Command(
 
       if (!url) {
         interaction.createFollowup({
-          content: `${emojis.no} │ ${t["!discovery"]}`,
+          content: `${emojis.no} │ ${t["!server_discovery"]}`,
         });
       } else {
         const downloadEmoji = await getEmoji(emojis.download);

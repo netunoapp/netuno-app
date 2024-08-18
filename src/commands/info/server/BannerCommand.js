@@ -9,7 +9,7 @@ module.exports = new Command("server banner", async ({ t, interaction }) => {
     const url = interaction.guild.bannerURL("png", 4096);
 
     if (!url) {
-      interaction.createFollowup({ content: `${emojis.no} │ ${t["!banner"]}` });
+      interaction.createFollowup({ content: `${emojis.no} │ ${t["!server_banner"]}` });
     } else {
       const downloadEmoji = await getEmoji(emojis.download);
 

@@ -9,7 +9,7 @@ module.exports = new Command("server icon", async ({ t, interaction }) => {
     const url = interaction.guild.iconURL("png", 4096);
 
     if (!url) {
-      interaction.createFollowup({ content: `${emojis.no} │ ${t["!icon"]}` });
+      interaction.createFollowup({ content: `${emojis.no} │ ${t["!server_icon"]}` });
     } else {
       const downloadEmoji = await getEmoji(emojis.download);
 

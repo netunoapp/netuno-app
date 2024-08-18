@@ -9,7 +9,7 @@ module.exports = new Command("server splash", async ({ t, interaction }) => {
     const url = interaction.guild.splashURL("png", 4096);
 
     if (!url) {
-      interaction.createFollowup({ content: `${emojis.no} │ ${t["!splash"]}` });
+      interaction.createFollowup({ content: `${emojis.no} │ ${t["!server_splash"]}` });
     } else {
       const downloadEmoji = await getEmoji(emojis.download);
 

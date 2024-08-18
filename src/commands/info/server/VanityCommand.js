@@ -9,7 +9,7 @@ module.exports = new Command("server vinaty", async ({ t, interaction }) => {
     const url = await interaction.guild.getVanityURL();
 
     if (!url) {
-      interaction.createFollowup({ content: `${emojis.no} │ ${t["!vinaty"]}` });
+      interaction.createFollowup({ content: `${emojis.no} │ ${t["!server_vanity"]}` });
     } else {
       const downloadEmoji = await getEmoji(emojis.download);
 
