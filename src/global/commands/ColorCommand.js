@@ -7,7 +7,7 @@ const {
 const Command = require("../base/Command");
 const EphemeralOption = require("../options/EphemeralOption");
 
-exports.default = Command({
+module.exports = Command({
   type: ApplicationCommandTypes.CHAT_INPUT,
   name: "color",
   nameLocalizations: {
