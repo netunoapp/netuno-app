@@ -1,20 +1,12 @@
-const Command = require("../../../base/Command");
-const getApp = require("../../../helpers/getApp");
-const emojis = require("../../../../data/emojis.json");
-const getEmoji = require("../../../helpers/getEmoji");
+const Command = require("../../base/Command");
+const emojis = require("../../../data/emojis.json");
+const getApp = require("../../helpers/getApp");
+const getEmoji = require("../../helpers/getEmoji");
 
-module.exports = new Command("app info", async ({ t, app, interaction }) => {
-  const userOption = interaction.data.options.getUser("user", true);
-  const user = await app.rest.users.get(userOption.id);
-
-  if (!user.bot) {
-    interaction.createFollowup({
-      content: `${emojis.no} │ ${t["!app"]}`,
-    });
-    return;
-  }
-
-  const app2 = await getApp(user.id);
+module.exports = new Command("info", async ({ t, app, interaction }) => {
+  const owner = await app.rest.users.get(`${process.env.OWNER}`);
+  const user = await app.rest.users.get(app.user.id);
+  const app2 = await getApp(app.user.id);
   const avatar = user.avatarURL(
     user.avatar && user.avatar.includes("a_") ? "gif" : "png",
     4096
@@ -23,36 +15,37 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
     user.banner && user.banner.includes("a_") ? "gif" : "png",
     4096
   );
-  const components = [];
-  const components2 = [];
 
+  const components = [
+    {
+      type: 2,
+      style: 5,
+      label: t.vote,
+      emoji: {
+        name: `⭐`,
+      },
+      url: "https://top.gg/bot/1224034132238270566",
+    },
+  ];
+  const components2 = [];
   const embed = {
     color: 5793266,
-    title: app2.name,
+    title: user.username,
     fields: [
       {
         inline: true,
-        name: `${emojis.id} ${t.id}`,
-        value: `\`\`${app2.id}\`\``,
+        name: `${emojis.owner} ${t.owner}`,
+        value: `\`\`${owner.globalName}\`\` (id: \`\`${owner.id}\`\`)`,
       },
       {
-        inline: true,
-        name: `💁 ${t.support}`,
-        value: `\`\`${app2.guild_id}\`\``,
-      },
-      {
-        inline: true,
-        name: `${emojis.tag} ${t.tags}`,
-        value: `${
-          app2.tags && app2.tags[0]
-            ? app2.tags.map((t) => `\`\`${t}\`\``).join(", ")
-            : `\`\`${t.none}\`\``
-        }`,
-      },
-      {
-        inline: false,
-        name: `:key: ${t.verifyKey}`,
-        value: `\`\`${app2.verify_key}\`\``,
+        name: `:bar_chart: ${t.stats}`,
+        value: t.stats_val
+          .replace(
+            "%u",
+            `${app.guilds.reduce((acc, guild) => acc + guild.memberCount, 0)}`
+          )
+          .replace("%g", `${app.guilds.size}`)
+          .replace("%s", `${app.shards.size}`),
       },
       {
         name: `${emojis.config} ${t.characteristics}`,
@@ -69,9 +62,14 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
           } ${t.brcg}`,
         ].join("\n"),
       },
+      {
+        name: `⏰ ${t.uptime}`,
+        value: `<t:${parseInt(
+          `${app.user.createdAt.getTime() / 1000}`
+        )}:F> (<t:${parseInt(`${app.user.createdAt.getTime() / 1000}`)}:R>)`,
+      },
     ],
   };
-
   if (banner) embed.image = { url: banner };
   if (avatar) embed.thumbnail = { url: avatar };
   if (app2.description) embed.description = app2.description;
@@ -131,9 +129,7 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
             app2.id
           }&permissions=${
             res.permissions
-          }&integration_type=0&scope=${res.scopes.join(
-            "+"
-          )}`,
+          }&integration_type=0&scope=${res.scopes.join("+")}`,
         });
       }
     } else if (app2.integration_types_config && app2.integration_types_config["0"]) {
@@ -208,8 +204,6 @@ module.exports = new Command("app info", async ({ t, app, interaction }) => {
       components: components2,
     });
   }
-
-  console.log(row);
 
   interaction.createFollowup({
     embeds: [embed],
